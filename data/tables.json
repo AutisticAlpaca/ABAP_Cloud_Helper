@@ -1,0 +1,26 @@
+[
+  {
+    "table": "MARA",
+    "description": "General Material Data",
+    "cloud": "I_Material",
+    "type": "Material master",
+    "notes": "Core material data. In S/4HANA used via released CDS views.",
+    "cds_hint": "Use I_Material or C_Material"
+  },
+  {
+    "table": "KNA1",
+    "description": "Customer Master General Data",
+    "cloud": "I_Customer",
+    "type": "Customer master",
+    "notes": "Replaced by business partner model in S/4HANA.",
+    "cds_hint": "Use I_Customer or I_BusinessPartner"
+  },
+  {
+    "table": "VBAP",
+    "description": "Sales Document: Item Data",
+    "cloud": "I_SalesDocumentItem",
+    "type": "SD",
+    "notes": "Use SD CDS views instead of direct table access.",
+    "cds_hint": "Use I_SalesDocumentItem / I_SalesOrderItem"
+  }
+]
