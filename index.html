@@ -6,24 +6,56 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app">
+      <!-- APP -->
+  <div class="app">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="logo-area">
+        <div class="logo-circle">☁</div>
+        <div>
+          <h1>ABAP Cloud Helper</h1>
+          <p>Migration Assistant</p>
+        </div>
+      </div>
+    </header>
 
-  <!-- LEFT -->
-  <div class="sidebar">
-    <h3>Tables</h3>
-    <input id="search" placeholder="Search table..." />
-    <div id="list"></div>
+    <!-- NAVIGATION -->
+    <nav class="tabs">
+      <button class="tab active" data-view="tables">
+        Tables
+      </button>
+
+      <button class="tab" data-view="fm">
+        Function Modules
+      </button>
+
+      <button class="tab" data-view="snippets">
+        Snippets
+      </button>
+
+      <button class="tab" data-view="rap">
+        RAP
+      </button>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="content">
+      <!-- SEARCH -->
+      <section class="search-section">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search SAP object..."
+        />
+      </section>
+      <!-- RESULT AREA -->
+      <section id="results" class="results-grid">
+      </section>
+    </main>
+
   </div>
 
-  <!-- RIGHT -->
-  <div class="main">
-    <h2>Table Converter</h2>
-    <input id="inputTable" placeholder="Enter table name (e.g. MARA)" />
-    <button onclick="convertTable()">Convert</button>
-    <div id="result"></div>
-  </div>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

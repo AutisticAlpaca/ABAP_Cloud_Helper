@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Classic SELECT",
+
+    "classic": "SELECT * FROM mara INTO TABLE lt_mara.",
+
+    "cloud": "SELECT FROM I_Material FIELDS * INTO TABLE @DATA(lt_material)."
+  },
+
+  {
+    "title": "Classic LOOP",
+
+    "classic": "LOOP AT lt_data INTO ls_data.",
+
+    "cloud": "LOOP AT lt_data INTO DATA(ls_data)."
+  }
+]

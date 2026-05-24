@@ -1,51 +1,270 @@
+/* =====================================================
+   SAP/FIORI COLOR PALETTE
+===================================================== */
+
+:root {
+  --sap-blue: #0A6ED1;
+  --sap-blue-dark: #0854A0;
+  --sap-background: #F5F6F7;
+  --sap-card: #FFFFFF;
+  --sap-border: #D9D9D9;
+  --sap-text: #32363A;
+  --sap-success: #107E3E;
+  --sap-warning: #E9730C;
+  --sap-error: #BB0000;
+  --shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: Arial;
-  background: #1e1e1e;
-  color: white;
+  font-family: Arial, sans-serif;
+  background: var(--sap-background);
+  color: var(--sap-text);
 }
 
 .app {
+  min-height: 100vh;
+}
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar {
+  background: var(--sap-blue);
+  color: white;
+  padding: 18px 32px;
+  box-shadow: var(--shadow);
+}
+
+.logo-area {
   display: flex;
-  height: 100vh;
+  align-items: center;
+  gap: 16px;
 }
 
-.sidebar {
-  width: 300px;
-  background: #252526;
-  padding: 10px;
-  overflow-y: auto;
+.logo-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: white;
+  color: var(--sap-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
 }
 
-.main {
-  flex: 1;
-  padding: 20px;
+.logo-area h1 {
+  margin: 0;
+  font-size: 24px;
 }
 
-input {
+.logo-area p {
+  margin: 4px 0 0 0;
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+/* =====================================================
+   TABS
+===================================================== */
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  padding: 18px 32px;
+  background: white;
+  border-bottom: 1px solid var(--sap-border);
+}
+
+.tab {
+  border: none;
+  background: transparent;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.tab:hover {
+  background: #EAF3FC;
+}
+
+.tab.active {
+  background: var(--sap-blue);
+  color: white;
+}
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content {
+  padding: 32px;
+}
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-section {
+  margin-bottom: 24px;
+}
+
+.search-input {
   width: 100%;
-  padding: 8px;
-  margin: 10px 0;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--sap-border);
+  font-size: 16px;
+  outline: none;
+  box-shadow: var(--shadow);
 }
 
-button {
-  padding: 10px;
+.search-input:focus {
+  border-color: var(--sap-blue);
+}
+
+/* =====================================================
+   RESULTS GRID
+===================================================== */
+
+.results-grid {
+  display: grid;
+  gap: 20px;
+}
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card {
+  background: var(--sap-card);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  border: 1px solid #ECECEC;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card-section {
+  margin-top: 18px;
+}
+
+.label {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.code-box {
+  background: #1E1E1E;
+  color: #DCDCDC;
+  padding: 18px;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-family: monospace;
+  margin-top: 10px;
+}
+
+/* =====================================================
+   STATUS PILLS
+===================================================== */
+
+.status {
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.status.success {
+  background: var(--sap-success);
+}
+
+.status.warning {
+  background: var(--sap-warning);
+}
+
+.status.error {
+  background: var(--sap-error);
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.button-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.action-button {
+  border: none;
+  background: var(--sap-blue);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-.item {
-  padding: 10px;
-  border-bottom: 1px solid #333;
-  cursor: pointer;
+.action-button:hover {
+  background: var(--sap-blue-dark);
 }
 
-.item:hover {
-  background: #333;
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: #666;
 }
 
-.result-box {
-  margin-top: 20px;
-  padding: 15px;
-  background: #2d2d2d;
-  border-left: 4px solid #00aaff;
+.empty-state h2 {
+  margin-bottom: 12px;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .tabs {
+    overflow-x: auto;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .card {
+    padding: 20px;
+  }
 }
