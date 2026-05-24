@@ -2,9 +2,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ABAP Cloud Helper</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="app">
+
+  <!-- LEFT -->
+  <div class="sidebar">
+    <h3>Tables</h3>
+    <input id="search" placeholder="Search table..." />
+    <div id="list"></div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="main">
+    <h2>Table Converter</h2>
+    <input id="inputTable" placeholder="Enter table name (e.g. MARA)" />
+    <button onclick="convertTable()">Convert</button>
+    <div id="result"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

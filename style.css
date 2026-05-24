@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #1e1e1e;
+  color: white;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 300px;
+  background: #252526;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.item {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: #333;
+}
+
+.result-box {
+  margin-top: 20px;
+  padding: 15px;
+  background: #2d2d2d;
+  border-left: 4px solid #00aaff;
+}
