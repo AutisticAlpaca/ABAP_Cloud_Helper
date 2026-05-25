@@ -1,12 +1,14 @@
 [
   {
     "name": "GUI_DOWNLOAD",
+    "description": "Download files",
     "cloud": "Use file APIs / RAP download approach",
     "notes": "GUI_DOWNLOAD is not cloud compliant."
   },
 
   {
     "name": "WS_UPLOAD",
+    "description": "Upload files",
     "cloud": "Use XCO libraries or HTTP upload",
     "notes": "Classic frontend upload is not allowed in cloud."
   }

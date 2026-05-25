@@ -152,7 +152,7 @@ ${item.cds}
       </div>
 
       <div class="button-row">
-        <button class="action-button">
+        <button class="action-button" onclick="copyText(\`${item.cds}\)">
           Copy CDS
         </button>
 
@@ -163,6 +163,19 @@ ${item.cds}
     `;
 
     results.appendChild(card);
+
+    // setTimeout(() => {
+
+    // document.querySelectorAll(".copy-btn").forEach(btn => {
+    //   btn.addEventListener("click", () => {
+
+    //     const text = decodeURIComponent(btn.dataset.text);
+    //     copyText(text);
+
+    //     });
+    //   });
+
+    // }, 0);
   });
 }
 
@@ -191,6 +204,11 @@ function renderFunctionModules(data) {
         <div class="status warning">
           Classic ABAP
         </div>
+      </div>
+
+      <div class="card-section">
+        <div class="label">Description</div>
+        <div>${item.description}</div>
       </div>
 
       <div class="card-section">
@@ -317,6 +335,25 @@ function getStatusClass(status) {
   }
 
   return "error";
+}
+
+// =====================================================
+// COPY TEXT
+// =====================================================
+
+function copyText(text) {
+
+  navigator.clipboard.writeText(text)
+    .then(() => {
+      alert("Copied to clipboard");
+      // btn.innerText = "Copied ✔";
+      // setTimeout(() => {
+      //   btn.innerText = "Copy Cloud Code";
+      // }, 1500);
+    })
+    .catch(err => {
+      console.error("Copy failed:", err);
+    });
 }
 
 // =====================================================
