@@ -1,15 +1,17 @@
 [
   {
-    "name": "GUI_DOWNLOAD",
-    "description": "Download files",
-    "cloud": "Use file APIs / RAP download approach",
-    "notes": "GUI_DOWNLOAD is not cloud compliant."
+    "name": "CONVERT_TO_LOCAL_CURRENCY",
+    "description": "Convert to local currency",
+    "cloud": "Use the provided selection statement",
+    "notes": "FM CONVERT_TO_LOCAL_CURRENCY is not cloud compliant.",
+    "snippetFile": "snippets/fm/convert_to_local_currency.txt"
   },
 
   {
-    "name": "WS_UPLOAD",
-    "description": "Upload files",
-    "cloud": "Use XCO libraries or HTTP upload",
-    "notes": "Classic frontend upload is not allowed in cloud."
+    "name": "FI_PERIOD_DETERMINE",
+    "description": "Determine fiscal periods",
+    "cloud": "Use the provided selection statement",
+    "notes": "FM FI_PERIOD_DETERMINE is not cloud compliant.",
+    "snippetFile": "snippets/fm/fi_period_determine.txt"
   }
 ]

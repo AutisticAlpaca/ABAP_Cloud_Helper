@@ -1,0 +1,19 @@
+* Classic ABAP
+* CALL FUNCTION 'FI_PERIOD_DETERMINE'
+*   EXPORTING
+*     i_budat   = budat
+*     i_bukrs   = bukrs
+*     i_periv   = periv
+*   IMPORTING
+*     e_gjahr   = jahr
+*     e_poper   = poper.
+
+DATA(lv_date) = cl_abap_contect_info=>get_system_date().
+SELECT SINGLE FROM i_fisccalendardateforcompcode
+    FIELDS
+      FiscalYear,
+      FiscalPeriod
+    WHERE CompanyCode       = @bukrs
+      AND FiscalYearVariant = @periv
+      AND CalendarDate      = @budat
+     INTO (@jahr, @poper)

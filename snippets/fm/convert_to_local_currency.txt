@@ -1,0 +1,22 @@
+* Classic ABAP
+* CALL FUNCTION 'CONVERT_TO_LOCAL_CURRENCY'
+*   EXPORTING
+*     date             = sy-datum
+*     foreign_amount   = amount
+*     foreign_currency = input_currency
+*     local_currency   = output_currency
+*     type_of_rate     = 'TYPE_OF_RATE'
+*   IMPORTING
+*     local_amount     = local_amount.
+
+DATA(lv_date) = cl_abap_contect_info=>get_system_date().
+SELECT SINGLE
+       currency_conversion(
+         amount              = @amount,
+         source_currency     = @input_currency,
+         target_currency     = @output_currency,
+         exchange_rate_date  = @lv_date,
+         exchange_rate_type  = 'TYPE_OF_RATE'
+       )
+  FROM i_currency
+  INTO @local_amount.

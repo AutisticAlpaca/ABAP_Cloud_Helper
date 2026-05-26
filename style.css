@@ -188,6 +188,29 @@ body {
   margin-top: 10px;
 }
 
+/* .code-box {
+  background: #1E1E1E;
+  color: #DCDCDC;
+  padding: 18px;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 10px;
+  white-space: pre;
+} */
+
+.no-snippet {
+  margin-top: 10px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #F5F6F7;
+  border: 1px dashed var(--sap-border);
+  color: #666;
+  font-size: 14px;
+}
+
 /* =====================================================
    STATUS PILLS
 ===================================================== */

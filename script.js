@@ -173,8 +173,7 @@ function renderTables(data) {
 // FUNCTION MODULES VIEW
 // =====================================================
 
-function renderFunctionModules(data) {
-
+async function renderFunctionModules(data) {
   results.innerHTML = "";
 
   updateResultCount(data.length);
@@ -184,13 +183,36 @@ function renderFunctionModules(data) {
     return;
   }
 
-  data.forEach(item => {
+  for (const item of data) {
+
+    let snippet = "";
+    let hasSnippet = false;
+
+    if (item.snippetFile) {
+      try {
+        const response = await fetch(item.snippetFile);
+
+        if (response.ok) {
+          snippet = await response.text();
+          hasSnippet = snippet.trim().length > 0;
+        } else {
+          snippet = "No code snippet available.";
+        }
+      } catch (error) {
+        console.error("Could not load snippet file:", item.snippetFile, error);
+        snippet = "No code snippet available.";
+      }
+    } else if (item.snippet && item.snippet.trim().length > 0) {
+      snippet = item.snippet;
+      hasSnippet = true;
+    } else {
+      snippet = "No code snippet available.";
+    }
 
     const card = document.createElement("div");
     card.className = "card";
 
     card.innerHTML = `
-
       <div class="card-header">
         <div class="card-title">${item.name}</div>
         <div class="status warning">
@@ -209,19 +231,33 @@ function renderFunctionModules(data) {
       </div>
 
       <div class="card-section">
+        <div class="label">Cloud Snippet</div>
+
+        ${
+          hasSnippet
+            ? `<pre class="code-box"><code>${escapeHtml(snippet)}</code></pre>`
+            : `<div class="no-snippet">No code snippet available.</div>`
+        }
+      </div>
+
+      <div class="card-section">
         <div class="label">Recommendation</div>
         <div>${item.notes}</div>
       </div>
 
-      <div class="button-row">
-        <button class="action-button copy-btn" data-copy="${item.cloud}">
-          Copy Alternative
-        </button>
-      </div>
+      ${
+        hasSnippet
+          ? `<div class="button-row">
+              <button class="action-button" onclick="copyText(\`${snippet.replaceAll("`", "\\`")}\`, this)">
+                Copy Snippet
+              </button>
+            </div>`
+          : ""
+      }
     `;
 
     results.appendChild(card);
-  });
+  }
 }
 
 // =====================================================
@@ -354,6 +390,15 @@ function updateResultCount(count) {
 
   const label = count === 1 ? "result" : "results";
   resultCount.textContent = `${count} ${label} found`;
+}
+
+function escapeHtml(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
 // =====================================================
