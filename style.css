@@ -236,6 +236,10 @@ body {
   background: var(--sap-blue-dark);
 }
 
+.action-button.copied {
+  background: var(--sap-success);
+}
+
 /* =====================================================
    EMPTY STATE
 ===================================================== */
@@ -267,4 +271,10 @@ body {
   .card {
     padding: 20px;
   }
+}
+
+.result-count {
+  margin-bottom: 16px;
+  color: #666;
+  font-size: 14px;
 }

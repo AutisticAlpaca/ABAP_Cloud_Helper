@@ -10,6 +10,7 @@ let snippetsData = [];
 const results = document.getElementById("results");
 const searchInput = document.getElementById("searchInput");
 const tabs = document.querySelectorAll(".tab");
+const resultCount = document.getElementById("resultCount");
 
 // =====================================================
 // LOAD DATA
@@ -107,6 +108,8 @@ function renderTables(data) {
 
   results.innerHTML = "";
 
+  updateResultCount(data.length);
+
   if (data.length === 0) {
     renderEmpty();
     return;
@@ -147,12 +150,12 @@ function renderTables(data) {
         <div class="label">Suggested CDS</div>
 
         <div class="code-box">
-${item.cds}
+          ${item.cds}
         </div>
       </div>
 
       <div class="button-row">
-        <button class="action-button" onclick="copyText(\`${item.cds}\)">
+        <button class="action-button copy-btn" data-copy="${item.cds}">
           Copy CDS
         </button>
 
@@ -163,19 +166,6 @@ ${item.cds}
     `;
 
     results.appendChild(card);
-
-    // setTimeout(() => {
-
-    // document.querySelectorAll(".copy-btn").forEach(btn => {
-    //   btn.addEventListener("click", () => {
-
-    //     const text = decodeURIComponent(btn.dataset.text);
-    //     copyText(text);
-
-    //     });
-    //   });
-
-    // }, 0);
   });
 }
 
@@ -186,6 +176,8 @@ ${item.cds}
 function renderFunctionModules(data) {
 
   results.innerHTML = "";
+
+  updateResultCount(data.length);
 
   if (data.length === 0) {
     renderEmpty();
@@ -220,6 +212,12 @@ function renderFunctionModules(data) {
         <div class="label">Recommendation</div>
         <div>${item.notes}</div>
       </div>
+
+      <div class="button-row">
+        <button class="action-button copy-btn" data-copy="${item.cloud}">
+          Copy Alternative
+        </button>
+      </div>
     `;
 
     results.appendChild(card);
@@ -233,6 +231,8 @@ function renderFunctionModules(data) {
 function renderSnippets(data) {
 
   results.innerHTML = "";
+
+  updateResultCount(data.length);
 
   if (data.length === 0) {
     renderEmpty();
@@ -254,7 +254,7 @@ function renderSnippets(data) {
         <div class="label">Classic ABAP</div>
 
         <div class="code-box">
-${item.classic}
+          ${item.classic}
         </div>
       </div>
 
@@ -262,8 +262,18 @@ ${item.classic}
         <div class="label">Cloud ABAP</div>
 
         <div class="code-box">
-${item.cloud}
+          ${item.cloud}
         </div>
+      </div>
+
+      <div class="button-row">
+        <button class="action-button copy-btn" data-copy="${item.classic}">
+          Copy Classic
+        </button>
+
+        <button class="action-button copy-btn" data-copy="${item.cloud}">
+          Copy Cloud
+        </button>
       </div>
     `;
 
@@ -276,6 +286,7 @@ ${item.cloud}
 // =====================================================
 
 function renderRAP() {
+  updateResultCount("");
 
   results.innerHTML = `
 
@@ -325,7 +336,6 @@ function renderEmpty() {
 }
 
 function getStatusClass(status) {
-
   if (status === "Released") {
     return "success";
   }
@@ -333,23 +343,46 @@ function getStatusClass(status) {
   if (status === "Partial") {
     return "warning";
   }
-
   return "error";
 }
 
+function updateResultCount(count) {
+  if (count === "") {
+    resultCount.textContent = "";
+    return;
+  }
+
+  const label = count === 1 ? "result" : "results";
+  resultCount.textContent = `${count} ${label} found`;
+}
+
 // =====================================================
-// COPY TEXT
+// COPY FUNCTION
 // =====================================================
 
-function copyText(text) {
+document.addEventListener("click", event => {
+  if (!event.target.classList.contains("copy-btn")) {
+    return;
+  }
 
+  const button = event.target;
+  const text = button.dataset.copy;
+
+  copyText(text, button);
+});
+
+function copyText(text, button) {
   navigator.clipboard.writeText(text)
     .then(() => {
-      alert("Copied to clipboard");
-      // btn.innerText = "Copied ✔";
-      // setTimeout(() => {
-      //   btn.innerText = "Copy Cloud Code";
-      // }, 1500);
+      const originalText = button.textContent;
+
+      button.textContent = "Copied!";
+      button.classList.add("copied");
+
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.classList.remove("copied");
+      }, 1500);
     })
     .catch(err => {
       console.error("Copy failed:", err);
